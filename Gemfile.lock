@@ -1,0 +1,73 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.4.0)
+    bcrypt (3.1.10)
+    bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
+    byebug (8.1.0)
+    coderay (1.1.0)
+    dm-core (1.2.1)
+      addressable (~> 2.3)
+    dm-redis-adapter (0.10.1)
+      dm-core (>= 1.2.0)
+      dm-types (>= 1.2.0)
+      dm-validations (>= 1.2.0)
+      hiredis (~> 0.4.0)
+      redis (>= 3.0.4)
+    dm-types (1.2.2)
+      bcrypt-ruby (~> 3.0)
+      dm-core (~> 1.2.0)
+      fastercsv (~> 1.5)
+      json (~> 1.6)
+      multi_json (~> 1.0)
+      stringex (~> 1.4)
+      uuidtools (~> 2.1)
+    dm-validations (1.2.0)
+      dm-core (~> 1.2.0)
+    fastercsv (1.5.5)
+    hiredis (0.4.5)
+    json (1.8.3)
+    method_source (0.8.2)
+    multi_json (1.11.2)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
+      pry (~> 0.10)
+    rack (1.6.4)
+    rack-protection (1.5.3)
+      rack
+    redis (3.2.2)
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    sinatra-flash (0.3.0)
+      sinatra (>= 1.0.0)
+    slop (3.6.0)
+    stringex (1.5.1)
+    tilt (2.0.1)
+    uuidtools (2.1.5)
+    warden (1.2.3)
+      rack (>= 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bcrypt
+  dm-core
+  dm-redis-adapter
+  dm-types
+  pry
+  pry-byebug
+  redis
+  sinatra
+  sinatra-flash
+  warden
+
+BUNDLED WITH
+   1.10.6

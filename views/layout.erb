@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Code Based Authorization Example</title>
+
+    <style>
+      body {
+        margin: 10px auto;
+        width: 800px;
+      }
+      .success {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  </head>
+  <body>
+    <h1>Code Based Authorization Example</h1>
+
+    <p>
+      <a href="/">Display Code</a> |
+      <a href="/auth/login">Log In</a> |
+      <a href="/protected">Protected Page</a> |
+      <a href="/auth/logout">Log Out</a>
+    </p>
+
+    <div class='flash'>
+      <% if flash[:success] %>
+        <div class='success'>
+          <%= flash[:success] %>
+        </div>
+      <% end %>
+
+      <% if flash[:error] %>
+        <div class='error'>
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= yield %>
+  </body>
+</html>

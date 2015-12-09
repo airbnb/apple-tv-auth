@@ -1,0 +1,21 @@
+<h1><%= @token.short_code %></h1>
+<p>
+  Go to
+  <a onclick="alert('Use an incognito window or alternate browser to prevent session sharing with this login attempt.');return false;" href="<%= url('/authorize')%>"><%= url('/authorize')%></a>
+  from a logged in computer to finish signing in.
+</p>
+
+<script type='text/javascript'>
+  var token = <%= @token.to_json %>;
+  var intervalID = window.setInterval(function() {
+    $.ajax({
+      url: '/auth/login',
+      type: 'POST',
+      data: token,
+      success: function(result) {
+        window.clearInterval(intervalID);
+        $('.flash').html("<div class='success'>Successfully logged in</div>");
+      }
+    });
+  }, 3000);
+</script>
