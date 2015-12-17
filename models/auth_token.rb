@@ -1,3 +1,5 @@
+# This model is constructed without the assistance of an ORM such as DataMapper
+# to make the details of the implementation as explicit as possible.
 class AuthToken
   attr_accessor :nonce, :short_code, :nonce_hash, :id
 
