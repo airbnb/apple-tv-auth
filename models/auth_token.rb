@@ -1,5 +1,5 @@
 class AuthToken
-  attr_accessor :nonce, :short_code, :nonce_hash, :user_name
+  attr_accessor :nonce, :short_code, :nonce_hash, :id
 
   MAX_SHORT_CODE_ATTEMPTS = 20
 
@@ -15,19 +15,19 @@ class AuthToken
     self.short_code = options['short_code']
     self.nonce = options['nonce']
     self.nonce_hash = options['nonce_hash']
-    self.user_name = options['user_name']
+    self.id = options['id']
     @new_record = options['new_record']
   end
 
-  def authorize(user_name)
-    unless self.user_name
-      self.user_name = user_name
+  def authorize(id)
+    unless self.id
+      self.id = id
       save
     end
   end
 
   def authenticate(nonce)
-    self.user_name && BCrypt::Password.new(nonce_hash) == nonce
+    self.id && BCrypt::Password.new(self.nonce_hash) == nonce
   end
 
   def new_record?
@@ -71,13 +71,15 @@ class AuthToken
     {
       'short_code' => @short_code,
       'nonce_hash' => nonce_hash,
-      'user_name' => user_name
+      'id' => id
     }.to_json
   end
 
   def self.create
     token = nil
     attempt = 0
+    # There could be a collision with a previously generated short code so we
+    # will try up to MAX_SHORT_CODE_ATTEMPTS times before giving up.
     loop do
       attempt += 1
       token = self.new(
