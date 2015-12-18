@@ -13,7 +13,7 @@ Warden::Strategies.add(:password) do
 
     if user.nil?
       throw(:warden, message: "The user name you entered does not exist.")
-    elsif user.authenticate(params['password'])
+    elsif user.authenticated?(params['password'])
       success!(user)
     else
       throw(:warden, message: "The user name and password combination ")
@@ -33,7 +33,7 @@ Warden::Strategies.add(:nonce) do
 
     if token.nil? || user.nil?
       throw(:warden, message: "The code you entered has not been authorized.")
-    elsif token.authenticate(params['nonce'])
+    elsif token.authenticated?(params['nonce'])
       # TODO: destroy token
       success!(user)
     else

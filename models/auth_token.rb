@@ -28,7 +28,7 @@ class AuthToken
     end
   end
 
-  def authenticate(nonce)
+  def authenticated?(nonce)
     self.id && BCrypt::Password.new(self.nonce_hash) == nonce
   end
 
