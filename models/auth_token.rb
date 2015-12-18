@@ -45,9 +45,7 @@ class AuthToken
   end
 
   def refresh_expiry!
-    if !new_record?
-      self.class.redis.setex(redis_key, REDIS_EXPIRY, self.to_redis)
-    end
+    self.class.redis.setex(redis_key, REDIS_EXPIRY, self.to_redis)
   end
 
   def save
