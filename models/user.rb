@@ -13,3 +13,11 @@ class User
     end
   end
 end
+
+# Create a test User
+if User.count == 0
+  user = User.create
+  user.user_name = "admin"
+  user.password = "admin"
+  user.save
+end

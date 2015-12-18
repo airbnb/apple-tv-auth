@@ -28,7 +28,7 @@ Warden::Strategies.add(:nonce) do
 
   def authenticate!
     token = AuthToken.get(params['short_code'])
-    user = User.get(token.user_name) if token
+    user = User.get(token.id) if token
     token.refresh_expiry! unless user
 
     if token.nil? || user.nil?
@@ -65,7 +65,7 @@ class AppleTvAuthExample < Sinatra::Base
   end
 
   get '/' do
-    binding.pry
+    redirect '/auth/logout' if env['warden'].user
     @token = AuthToken.create
     erb :token
   end
@@ -84,17 +84,17 @@ class AppleTvAuthExample < Sinatra::Base
     end
   end
 
-  get '/auth/login' do
+  get '/login' do
     erb :login
   end
 
-  post '/auth/login' do
+  post '/login' do
     env['warden'].authenticate!
 
     flash[:success] = "Successfully logged in"
 
     if session[:return_to].nil?
-      redirect '/'
+      redirect '/authorize'
     else
       redirect session[:return_to]
     end
@@ -115,7 +115,7 @@ class AppleTvAuthExample < Sinatra::Base
     else
       # Set the error and use a fallback if the message is not defined
       flash[:error] = env['warden.options'][:message] || "You must log in"
-      redirect '/auth/login'
+      redirect '/login'
     end
   end
 
