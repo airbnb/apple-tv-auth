@@ -1,7 +1,7 @@
 # Apple TV Authentication Example
 
 This is an example authentication server for an Apple TV or other device that
-doesn't lend itself to password entry. Check out _insert link to blog post_ for
+doesn't lend itself to password entry. Check out https://medium.com/airbnb-engineering/apple-tv-authentication-a156937ea211#.yyj7id33m for
 details about the workflow implemented here.
 
 Much of the basic Sinatra/Warden implementation is based on Steve Klise's
