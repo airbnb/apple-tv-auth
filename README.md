@@ -1,3 +1,5 @@
+**Update:** On March 3, 2020 Airbnb sunset the Airbnb Apple TV app.
+
 # Apple TV Authentication Example
 
 This is an example authentication server for an Apple TV or other device that
